@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant user as Usuario
+    participant browser as Navegador
+    participant client as JavaScript en el Navegador
+    participant server as Servidor
+    participant database as Base de Datos
+
+    User->>browser: Ingresa texto y hace clic en "Save"
+    activate client
+    client-->>client: Crea nuevo objeto de nota
+    client->>server: POST solicitud con información de la nueva nota
+    activate server
+    server-->>database: Almacena nueva nota en la base de datos
+    database-->>server: Confirmación de almacenamiento
+    server-->>client: Respuesta de éxito
+    deactivate server
+    client-->>browser: Actualiza interfaz de usuario
+    deactivate client
+    browser-->>user: Muestra interfaz de usuario actualizada con la nueva nota

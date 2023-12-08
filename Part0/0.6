@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant user as Usuario
+    participant browser as Navegador
+    participant spa as Aplicación de una sola página
+    participant server as Servidor
+    participant database as Base de Datos
+
+    User->>browser: Ingresa texto y hace clic en "Guardar"
+    activate spa
+    spa-->>spa: Crea nuevo objeto de nota localmente
+    spa->>server: POST solicitud con información de la nueva nota
+    activate server
+    server-->>database: Almacena nueva nota en la base de datos
+    database-->>server: Confirmación de almacenamiento
+    server-->>spa: Respuesta de éxito
+    deactivate server
+    spa-->>browser: Actualiza interfaz de usuario localmente
+    deactivate spa
+    browser-->>user: Muestra interfaz de usuario actualizada con la nueva nota
+
+
+Notas:
+
+El usuario inserta el texto y hace clic en "Guardar" en el navegador.
+La aplicación crea un nuevo objeto de nota de forma local.
+Se envía una solicitud POST al servidor con la información de la nueva nota.
+El servidor almacena la nota nueva en la base de datos.
+El servidor responde con un mensaje de éxito a la aplicación .
+La aplicación actualiza la interfaz de usuario localmente.
+El navegador muestra la interfaz de usuario actualizada con la nueva nota.
