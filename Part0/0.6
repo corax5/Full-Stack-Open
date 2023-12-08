@@ -6,6 +6,7 @@ sequenceDiagram
     participant database as Base de Datos
 
     User->>browser: Ingresa texto y hace clic en "Guardar"
+    ```mermaid
     activate spa
     spa-->>spa: Crea nuevo objeto de nota localmente
     spa->>server: POST solicitud con información de la nueva nota
@@ -17,7 +18,7 @@ sequenceDiagram
     spa-->>browser: Actualiza interfaz de usuario localmente
     deactivate spa
     browser-->>user: Muestra interfaz de usuario actualizada con la nueva nota
-
+```
 
 Notas:
 
